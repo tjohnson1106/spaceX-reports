@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import gql from "graphql-tag";
 import { Query, OperationVariables, QueryProps } from "react-apollo";
 import { ApolloError } from "apollo-boost";
@@ -29,8 +29,8 @@ interface Props {
 class Launches extends Component<{}, Data, Props> {
   render() {
     return (
-      <div>
-        <h1 className="display-4 my-3">Launches</h1>ReactNode;
+      <Fragment>
+        <h1 className="display-4 my-3">Launches</h1>{" "}
         <Query<OperationVariables, QueryProps> query={LAUNCHES_QUERY}>
           {({ loading, error, data }) => {
             if (loading) return <h4>Loading...</h4>;
@@ -38,15 +38,15 @@ class Launches extends Component<{}, Data, Props> {
             if (error) console.log(error, "error");
 
             return (
-              <div>
+              <Fragment>
                 {data.launches.map(launch => (
                   <LaunchItem key={launch.flight_number} launch={launch} />
                 ))}
-              </div>
+              </Fragment>
             );
           }}
         </Query>
-      </div>
+      </Fragment>
     );
   }
 }
