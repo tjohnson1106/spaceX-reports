@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, ReactNode } from "react";
 import gql from "graphql-tag";
 import { Query, OperationVariables, QueryProps } from "react-apollo";
 import { ApolloError } from "apollo-boost";
@@ -16,15 +16,15 @@ const LAUNCHES_QUERY = gql`
   }
 `;
 
-interface Data {
+export interface Data {
   loading: boolean;
   error: ApolloError | undefined;
   data: {} | undefined;
   key: string[];
 }
 
-interface Props {
-  launch: number;
+export interface Props {
+  launch: any;
 }
 
 class Launches extends Component<{}, Data, Props> {
